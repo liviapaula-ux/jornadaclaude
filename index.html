@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Jornada de Benefícios · iFood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #EA1D2C;
+  --red-soft: #FFF0F1;
+  --red-mid: #FDDADC;
+  --ink: #1A1A1A;
+  --ink-60: #6B6B6B;
+  --ink-30: #BCBCBC;
+  --ink-10: #F5F5F5;
+  --white: #FFFFFF;
+  --radius-pill: 100px;
+  --radius-card: 16px;
+  --radius-sm: 8px;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: #FAFAF9;
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  border-bottom: 1px solid #EBEBEB;
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logo-dot {
+  width: 28px;
+  height: 28px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-dot svg { width: 16px; height: 16px; fill: white; }
+
+.header-tag {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-60);
+  letter-spacing: .3px;
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ── HERO ── */
+.hero {
+  margin-bottom: 40px;
+  animation: fadeUp .5s var(--ease-out) both;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--ink-60);
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+/* ── STEP ── */
+.step {
+  margin-bottom: 32px;
+  animation: fadeUp .5s var(--ease-out) .08s both;
+}
+
+.step-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-num {
+  width: 20px;
+  height: 20px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── MOMENT PILLS ── */
+.moments-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mpill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid #E0E0E0;
+  background: var(--white);
+  cursor: pointer;
+  transition: border-color .15s, background .15s, transform .12s var(--ease);
+  font-family: var(--font-body);
+  user-select: none;
+}
+
+.mpill:hover { border-color: var(--ink-30); transform: translateY(-1px); }
+.mpill:active { transform: scale(.97); }
+
+.mpill.sel {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.mpill-emoji { font-size: 16px; line-height: 1; }
+
+.mpill-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color .15s;
+}
+
+.mpill.sel .mpill-name { color: var(--white); }
+
+.mpill-count {
+  font-size: 10px;
+  color: var(--ink-30);
+  transition: color .15s;
+}
+
+.mpill.sel .mpill-count { color: rgba(255,255,255,.5); }
+
+/* ── PIECES AREA ── */
+.pieces-area {
+  display: none;
+  animation: fadeUp .35s var(--ease-out) both;
+}
+
+.pieces-area.show { display: block; }
+
+.moment-block {
+  margin-bottom: 24px;
+  animation: fadeUp .3s var(--ease-out) both;
+}
+
+.moment-block-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.moment-block-emoji { font-size: 14px; }
+
+.moment-block-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+.pieces-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.piece {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  cursor: default;
+  animation: popIn .25s var(--ease) both;
+}
+
+.piece-icon { font-size: 14px; line-height: 1; }
+
+.piece-name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.piece-pts {
+  font-size: 10px;
+  opacity: .65;
+}
+
+/* ── SUGGEST STRIP ── */
+.suggest-strip {
+  display: none;
+  margin-top: 4px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid #EBEBEB;
+  border-left: 3px solid var(--red);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  animation: fadeUp .3s var(--ease-out) both;
+}
+
+.suggest-strip.show { display: block; }
+
+.suggest-header {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+
+.suggest-items { display: flex; flex-direction: column; gap: 6px; }
+
+.sug-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sug-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.sug-name { font-weight: 500; color: var(--ink); }
+.sug-reason { color: var(--ink-60); }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: #EBEBEB;
+  margin: 28px 0;
+}
+
+/* ── SUMMARY ── */
+.summary {
+  display: none;
+  animation: fadeUp .35s var(--ease-out) both;
+}
+
+.summary.show { display: block; }
+
+.summary-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  animation: popIn .2s var(--ease) both;
+}
+
+/* ── ACTIONS ── */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn-primary {
+  padding: 11px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--red);
+  color: var(--white);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: opacity .15s, transform .12s var(--ease);
+}
+
+.btn-primary:hover { opacity: .88; }
+.btn-primary:active { transform: scale(.97); }
+
+.btn-ghost {
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid #E0E0E0;
+  background: transparent;
+  color: var(--ink-60);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: border-color .15s, color .15s;
+}
+
+.btn-ghost:hover { border-color: var(--ink-30); color: var(--ink); }
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  font-size: 11px;
+  color: var(--ink-30);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="logo" href="#">
+    <div class="logo-dot">
+      <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/></svg>
+    </div>
+    iFood Benefícios
+  </a>
+  <span class="header-tag">Jornada de Vida</span>
+</header>
+
+<main class="main">
+
+  <div class="hero">
+    <p class="hero-eyebrow">Monte o seu pacote</p>
+    <h1 class="hero-title">Benefícios que <em>fazem sentido</em><br>pro seu momento</h1>
+    <p class="hero-sub">Não existe jornada padrão. Escolha os momentos que descrevem sua vida agora e veja as peças que foram feitas pra você.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-label">
+      <span class="step-num">1</span>
+      qual é o seu momento agora? escolha quantos quiser
+    </div>
+    <div class="moments-grid" id="momentGrid"></div>
+  </div>
+
+  <div class="pieces-area" id="piecesArea">
+    <div class="divider"></div>
+    <div class="step">
+      <div class="step-label">
+        <span class="step-num">2</span>
+        suas peças
+      </div>
+      <div id="activePieces"></div>
+      <div class="suggest-strip" id="suggestStrip">
+        <div class="suggest-header">pessoas com perfil parecido também ativam</div>
+        <div class="suggest-items" id="suggestItems"></div>
+      </div>
+    </div>
+
+    <div class="summary" id="summary">
+      <div class="divider"></div>
+      <div class="step-label">
+        <span class="step-num">3</span>
+        seu pacote completo
+      </div>
+      <div class="chips-wrap" id="summChips"></div>
+      <div class="actions">
+        <button class="btn-primary" id="actionBtn">Ver como aproveitar ↗</button>
+        <button class="btn-ghost" onclick="reset()">recomeçar</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">iFood Benefícios · Jornada de Vida · dados reais da base Foodlovers</footer>
+
+<script>
+const moments = [
+  {
+    id:'familia',
+    emoji:'👨‍👩‍👧',
+    name:'tenho família',
+    n:'30% da base',
+    pieces:['saude_familia','odonto_familia','medicamento','seguro_vida'],
+    suggest:['farmacia','reembolso']
+  },
+  {
+    id:'pet',
+    emoji:'🐾',
+    name:'tenho pet',
+    n:'9% da base',
+    pieces:['pet_jovem','pet_senior'],
+    suggest:['cultura','viagem']
+  },
+  {
+    id:'carreira',
+    emoji:'📚',
+    name:'quero crescer',
+    n:'14% da base',
+    pieces:['idiomas','reembolso'],
+    suggest:['cultura','viagem']
+  },
+  {
+    id:'saude',
+    emoji:'🌿',
+    name:'cuido de mim',
+    n:'8% da base',
+    pieces:['farmacia','academia','medicamento'],
+    suggest:['reembolso','idiomas']
+  },
+  {
+    id:'cultura',
+    emoji:'🎭',
+    name:'vivo experiências',
+    n:'4% da base',
+    pieces:['cultura','viagem'],
+    suggest:['farmacia','reembolso']
+  },
+  {
+    id:'mobilidade',
+    emoji:'🚗',
+    name:'vivo na estrada',
+    n:'2% da base',
+    pieces:['mobilidade','viagem'],
+    suggest:['reembolso']
+  },
+];
+
+const pieces = {
+  saude_familia: { icon:'🏥', name:'Saúde família',   pts:'335–1141 pts', bg:'#EEF5FF', tc:'#1A5FB4', border:'#C4D9F8' },
+  odonto_familia:{ icon:'🦷', name:'Odonto família',  pts:'12–80 pts',    bg:'#F3EEFF', tc:'#6030B0', border:'#DDD0F8' },
+  medicamento:   { icon:'🩺', name:'Medicamento',     pts:'per capta',    bg:'#EEF5FF', tc:'#1A5FB4', border:'#C4D9F8' },
+  seguro_vida:   { icon:'🛡️', name:'Seguro de vida',  pts:'múltiplo',     bg:'#FFF8EE', tc:'#8A4F00', border:'#F5DFB0' },
+  pet_jovem:     { icon:'🐾', name:'Pet Jovem',       pts:'R$20–320/mês', bg:'#EEFAF3', tc:'#1A6B3A', border:'#B8E8CB' },
+  pet_senior:    { icon:'🐕', name:'Pet Sênior',      pts:'+7 anos',      bg:'#EEFAF3', tc:'#1A6B3A', border:'#B8E8CB' },
+  idiomas:       { icon:'🌍', name:'Idiomas',         pts:'até R$3,6k/ano',bg:'#EEF5FF', tc:'#1A5FB4', border:'#C4D9F8' },
+  reembolso:     { icon:'📋', name:'ReembolsoFlex',   pts:'uso livre',    bg:'#FFF0F1', tc:'#C41025', border:'#FDDADC' },
+  farmacia:      { icon:'💊', name:'Farmácia',        pts:'uso livre',    bg:'#EEFAF3', tc:'#1A6B3A', border:'#B8E8CB' },
+  academia:      { icon:'💪', name:'Academia',        pts:'Wellhub',      bg:'#EEFAF3', tc:'#1A6B3A', border:'#B8E8CB' },
+  cultura:       { icon:'🎭', name:'Cultura iFood',   pts:'R$50/mês',     bg:'#F3EEFF', tc:'#6030B0', border:'#DDD0F8' },
+  viagem:        { icon:'✈️', name:'Viagem',          pts:'acumulativa',  bg:'#FFF8EE', tc:'#8A4F00', border:'#F5DFB0' },
+  mobilidade:    { icon:'🚗', name:'Mobilidade',      pts:'uso livre',    bg:'#F5F5F5', tc:'#444444', border:'#DDDDDD' },
+};
+
+const suggestions = {
+  farmacia:  { icon:'💊', name:'Farmácia',       reason:'cobre remédios, vitaminas e saúde do dia a dia — muito ativado por quem tem família' },
+  reembolso: { icon:'📋', name:'ReembolsoFlex',  reason:'pode cobrir escola dos filhos, cursos e equipamentos de home office' },
+  cultura:   { icon:'🎭', name:'Cultura iFood',  reason:'quem tem pet tende a ativar cultura junto — correlação real na base' },
+  viagem:    { icon:'✈️', name:'Viagem',         reason:'carteira acumulativa — poupar pontos para as próximas férias' },
+  idiomas:   { icon:'🌍', name:'Idiomas',        reason:'combo natural com autocuidado e desenvolvimento profissional' },
+};
+
+let selected = new Set();
+
+function renderMoments() {
+  document.getElementById('momentGrid').innerHTML = moments.map(m => `
+    <button class="mpill ${selected.has(m.id) ? 'sel' : ''}" onclick="toggleMoment('${m.id}')">
+      <span class="mpill-emoji">${m.emoji}</span>
+      <span class="mpill-name">${m.name}</span>
+      <span class="mpill-count">${m.n}</span>
+    </button>`).join('');
+}
+
+function toggleMoment(id) {
+  selected.has(id) ? selected.delete(id) : selected.add(id);
+  update();
+}
+
+function update() {
+  renderMoments();
+  const pArea = document.getElementById('piecesArea');
+  const summ = document.getElementById('summary');
+
+  if (selected.size === 0) {
+    pArea.classList.remove('show');
+    summ.classList.remove('show');
+    return;
+  }
+
+  const activePieceIds = new Set();
+  selected.forEach(mid => {
+    moments.find(x => x.id === mid)?.pieces.forEach(p => activePieceIds.add(p));
+  });
+
+  const suggIds = new Set();
+  selected.forEach(mid => {
+    moments.find(x => x.id === mid)?.suggest.forEach(s => {
+      if (!activePieceIds.has(s)) suggIds.add(s);
+    });
+  });
+
+  // render blocks
+  let html = '';
+  selected.forEach(mid => {
+    const m = moments.find(x => x.id === mid);
+    if (!m) return;
+    html += `<div class="moment-block">
+      <div class="moment-block-header">
+        <span class="moment-block-emoji">${m.emoji}</span>
+        <span class="moment-block-name">${m.name}</span>
+      </div>
+      <div class="pieces-row">`;
+    m.pieces.forEach(pid => {
+      const p = pieces[pid];
+      if (!p) return;
+      html += `<div class="piece" style="background:${p.bg};border-color:${p.border};">
+        <span class="piece-icon">${p.icon}</span>
+        <span class="piece-name" style="color:${p.tc};">${p.name}</span>
+        <span class="piece-pts" style="color:${p.tc};">${p.pts}</span>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  document.getElementById('activePieces').innerHTML = html;
+  pArea.classList.add('show');
+
+  // suggestions
+  const strip = document.getElementById('suggestStrip');
+  const suggestItems = document.getElementById('suggestItems');
+  if (suggIds.size > 0) {
+    suggestItems.innerHTML = [...suggIds].map(s => {
+      const sg = suggestions[s];
+      if (!sg) return '';
+      return `<div class="sug-item">
+        <span class="sug-icon">${sg.icon}</span>
+        <div><span class="sug-name">${sg.name}</span> <span class="sug-reason">— ${sg.reason}</span></div>
+      </div>`;
+    }).join('');
+    strip.classList.add('show');
+  } else {
+    strip.classList.remove('show');
+  }
+
+  // summary chips
+  const chips = [...activePieceIds].map((pid, i) => {
+    const p = pieces[pid];
+    if (!p) return '';
+    return `<div class="chip" style="background:${p.bg};color:${p.tc};border:1px solid ${p.border};animation-delay:${i * 0.04}s;">
+      ${p.icon} ${p.name}
+    </div>`;
+  }).join('');
+  document.getElementById('summChips').innerHTML = chips;
+
+  const momentNames = [...selected].map(mid => moments.find(x => x.id === mid)?.name).join(' + ');
+  document.getElementById('actionBtn').onclick = () => {
+    alert('Pacote montado: ' + momentNames + '\n\nEm produção, esse botão abriria o portal de benefícios com as peças pré-selecionadas.');
+  };
+
+  summ.classList.add('show');
+}
+
+function reset() {
+  selected.clear();
+  document.getElementById('piecesArea').classList.remove('show');
+  document.getElementById('summary').classList.remove('show');
+  renderMoments();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderMoments();
+</script>
+</body>
+</html>
